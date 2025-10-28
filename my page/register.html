@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Event Registration Form</h2>
+
+    <form id="registrationForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" required />
+
+      <label for="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        required
+        pattern="[0-9]{8,15}"
+        placeholder="Enter your phone number"
+      />
+      <small class="hint">Digits only, 8–15 numbers.</small>
+
+      <label for="event">Event Name</label>
+      <input type="text" id="event" required />
+
+      <label for="date">Date</label>
+      <input type="date" id="date" required />
+
+      <div class="buttons">
+        <button type="submit" class="btn-primary">Register</button>
+        <a href="admin.html" class="btn-secondary">Back to Admin</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const participant = {
+        name: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        event: document.getElementById("event").value.trim(),
+        date: document.getElementById("date").value,
+        status: "Pending"
+      };
+
+      if (!participant.name || !participant.phone || !participant.event || !participant.date) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      const participants = JSON.parse(localStorage.getItem("participants")) || [];
+      participants.push(participant);
+      localStorage.setItem("participants", JSON.stringify(participants));
+
+      alert("Registration successful!");
+      window.location.href = "admin.html";
+    });
+  </script>
+</body>
+</html>

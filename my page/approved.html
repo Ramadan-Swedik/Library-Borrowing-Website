@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Approved Events</title>
+
+  <link rel="stylesheet" href="css/approve.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="left">
+        <a href="admin.html">← Back</a>
+        <h1>Approved Events</h1>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <input id="searchApproved" type="text" placeholder="Search by name, phone, or event" />
+        </div>
+
+        <select id="sortApproved">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Event</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="approvedTableBody">
+            <!-- Filled automatically with approved participants -->
+          </tbody>
+        </table>
+
+        <div id="noDataMessage" class="empty d-none">
+          No approved registrations yet.
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      © 2025 University Event Management Portal • Approved Events
+    </footer>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    const tableBody = document.getElementById("approvedTableBody");
+    const noDataMessage = document.getElementById("noDataMessage");
+    const searchInput = document.getElementById("searchApproved");
+    const sortSelect = document.getElementById("sortApproved");
+
+    function getParticipants() {
+      return JSON.parse(localStorage.getItem("participants")) || [];
+    }
+
+    function renderApproved() {
+      const participants = getParticipants().filter(p => p.status === "Approved");
+
+      // Sort logic
+      const sortType = sortSelect.value;
+      if (sortType === "newest") {
+        participants.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else {
+        participants.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+
+      const searchTerm = searchInput.value.toLowerCase();
+      const filtered = participants.filter(p =>
+        p.name.toLowerCase().includes(searchTerm) ||
+        p.phone.toLowerCase().includes(searchTerm) ||
+        p.event.toLowerCase().includes(searchTerm)
+      );
+
+      tableBody.innerHTML = "";
+      if (filtered.length === 0) {
+        noDataMessage.classList.remove("d-none");
+        return;
+      } else {
+        noDataMessage.classList.add("d-none");
+      }
+
+      filtered.forEach(p => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.phone}</td>
+          <td>${p.event}</td>
+          <td>${p.date}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Event listeners
+    searchInput.addEventListener("input", renderApproved);
+    sortSelect.addEventListener("change", renderApproved);
+
+    // Live updates (e.g., when approving from Admin)
+    window.addEventListener("storage", renderApproved);
+
+    // Initial render
+    renderApproved();
+  </script>
+</body>
+</html>

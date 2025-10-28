@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-bubble">🎓</div>
+        <h2 class="logo-text">Admin Panel</h2>
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item active" href="#">🏠 Dashboard</a>
+        <a class="menu-item" href="approved.html">✅ Approved Events</a>
+        <a class="menu-item" href="reports.html">📊 Reports</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <div class="content">
+      <!-- ===== Topbar ===== -->
+      <header class="topbar">
+        <div class="search-bar">
+          🔍
+          <input type="text" placeholder="Search Project..." />
+        </div>
+        <div class="user-info">
+          <div class="avatar"></div>
+          <span class="username">Admin</span>
+        </div>
+      </header>
+
+      <!-- ===== Dashboard Section ===== -->
+      <main class="main">
+        <section class="dashboard-header">
+          <h3>📈 Dashboard Overview</h3>
+        </section>
+
+        <section class="stats">
+          <div class="stat-card purple">
+            <div class="icon"></div>
+            <h4>Total Registrations</h4>
+            <p id="totalCount">0</p>
+          </div>
+
+          <div class="stat-card blue">
+            <div class="icon"></div>
+            <h4>Approved</h4>
+            <p id="approvedCount">0</p>
+          </div>
+
+          <div class="stat-card orange">
+            <div class="icon"></div>
+            <h4>Pending</h4>
+            <p id="pendingCount">0</p>
+          </div>
+
+          <div class="stat-card red">
+            <div class="icon"></div>
+            <h4>Rejected</h4>
+            <p id="rejectedCount">0</p>
+          </div>
+        </section>
+
+        <!-- ===== Manage Participants Section ===== -->
+        <section class="participants">
+          <div class="participants-header">
+            <h3>Manage Participants</h3>
+
+            <div class="tools">
+              <label for="dateFilter">Filter by Date:</label>
+              <select id="dateFilter">
+                <option value="none">Select</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+
+              <div class="search-small">
+                
+                <input type="text" id="searchInput" placeholder="Search by name, phone, or event..." />
+              </div>
+
+              <a href="register.html" class="add-btn"></a>
+            </div>
+          </div>
+
+          <table class="participants-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows will be added dynamically later -->
+            </tbody>
+          </table>
+        </section>
+
+        <footer class="footer">
+          © 2025 University Event Management Portal • Admin Panel
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
