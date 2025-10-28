@@ -47,15 +47,26 @@ body {
   
 }
 
-.Event-icon{
-  margin:  10px;
-  color: #5C7EA6;
-  height: 24px;
-  width: 24px;
-  text-align: center; /* Centers horizontally */
+.Event-icon-0{
+  
   display: flex;
-  align-items: center; /* Centers vertically */
-  justify-content: center; /* Centers horizontally again, safer */
+  align-items: flex-start; /* aligns top edge */
+  justify-content: flex-start;
+  gap: 20px;
+  margin-bottom: 40px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+
+.Event-icon-0 img{
+ width: 28px;
+  height: 28px;
+  display: inline-block;
+  vertical-align: top;
+  display: flex;
+  
+  
   
 }
 
@@ -64,16 +75,17 @@ body {
 
 
 
-.Event-info-0{
+.Event-icon-0 span{
  
-  display: flex ;
-  align-items: center;
-  flex-direction: row;
-  gap: 12px;
-  margin-bottom: 20px;
-  color: #243447;
-  font-size: 10px;
+  display: inline-block;
+  padding-left: 14px;   /* shifts text right */
+  padding-top: 1px;    /* shifts text down */
+  line-height: 28px;   /* matches icon height for vertical alignment */
+  font-size: 16px;
+  font-weight: 500;
+  
   font-family: fantasy;
+  
 
 
 }
