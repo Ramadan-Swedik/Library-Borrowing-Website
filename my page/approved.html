@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Approved Events</title>
-
   <link rel="stylesheet" href="css/approve.css" />
 </head>
 
@@ -42,14 +41,13 @@
               <th>Date</th>
             </tr>
           </thead>
-          <tbody id="approvedTableBody">
-            <!-- Filled automatically with approved participants -->
-          </tbody>
+          <tbody id="approvedTableBody"></tbody>
         </table>
 
-        <div id="noDataMessage" class="empty d-none">
-          No approved registrations yet.
-        </div>
+        <!-- Message for empty state -->
+        <p id="noDataMessage" class="d-none" style="text-align:center; color:#777; margin-top:10px;">
+          No approved events found.
+        </p>
       </section>
     </main>
 
@@ -59,64 +57,7 @@
     </footer>
   </div>
 
-  <!-- JavaScript Logic -->
-  <script>
-    const tableBody = document.getElementById("approvedTableBody");
-    const noDataMessage = document.getElementById("noDataMessage");
-    const searchInput = document.getElementById("searchApproved");
-    const sortSelect = document.getElementById("sortApproved");
-
-    function getParticipants() {
-      return JSON.parse(localStorage.getItem("participants")) || [];
-    }
-
-    function renderApproved() {
-      const participants = getParticipants().filter(p => p.status === "Approved");
-
-      // Sort logic
-      const sortType = sortSelect.value;
-      if (sortType === "newest") {
-        participants.sort((a, b) => new Date(b.date) - new Date(a.date));
-      } else {
-        participants.sort((a, b) => new Date(a.date) - new Date(b.date));
-      }
-
-      const searchTerm = searchInput.value.toLowerCase();
-      const filtered = participants.filter(p =>
-        p.name.toLowerCase().includes(searchTerm) ||
-        p.phone.toLowerCase().includes(searchTerm) ||
-        p.event.toLowerCase().includes(searchTerm)
-      );
-
-      tableBody.innerHTML = "";
-      if (filtered.length === 0) {
-        noDataMessage.classList.remove("d-none");
-        return;
-      } else {
-        noDataMessage.classList.add("d-none");
-      }
-
-      filtered.forEach(p => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${p.name}</td>
-          <td>${p.phone}</td>
-          <td>${p.event}</td>
-          <td>${p.date}</td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-
-    // Event listeners
-    searchInput.addEventListener("input", renderApproved);
-    sortSelect.addEventListener("change", renderApproved);
-
-    // Live updates (e.g., when approving from Admin)
-    window.addEventListener("storage", renderApproved);
-
-    // Initial render
-    renderApproved();
-  </script>
+  <!-- External JavaScript -->
+  <script src="js/approved.js"></script>
 </body>
 </html>
