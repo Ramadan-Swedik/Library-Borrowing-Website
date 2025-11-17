@@ -1,0 +1,86 @@
+/* header.css */
+:root{
+  --primary:#6b3e26;
+  --accent:#d4a017;
+  --muted:#6e5950;
+  --bg:#fffaf6;
+}
+
+*{box-sizing:border-box;}
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 10px;
+}
+
+.site-header{
+  background: linear-gradient(90deg, #fffaf2, #fdf8f3);
+  border-bottom: 1px solid rgba(107,62,38,0.08);
+  padding:12px 0;
+}
+
+.header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon-book{
+  color:var(--primary);
+  flex-shrink:0;
+}
+
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+
+.brand-name{
+  font-family:'Merriweather', serif;
+  font-weight:700;
+  font-size:19px;
+  color:var(--primary);
+}
+
+.brand-tag{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-search{
+  border:1px solid rgba(107,62,38,0.15);
+  padding:8px 10px;
+  border-radius:8px;
+  outline:none;
+  font-family:'Merriweather', serif;
+  background:#fff;
+  min-width:180px;
+}
+
+.header-search:focus{
+  box-shadow:0 0 0 3px rgba(212,160,23,0.15);
+}
+
+/* Mobile tweaks */
+@media (max-width:520px){
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+}

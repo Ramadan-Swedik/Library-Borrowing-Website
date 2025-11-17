@@ -1,0 +1,89 @@
+/* menu.css */
+:root{
+  --primary:#6b3e26;
+  --accent:#d4a017;
+  --muted:#6e5950;
+  --bg:#fffaf6;
+}
+
+.site-nav{
+  background:var(--bg);
+  border-bottom:1px solid rgba(107,62,38,0.06);
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+}
+
+.nav-left{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.nav-logo{
+  color:var(--primary);
+  font-family:'Merriweather', serif;
+  font-weight:700;
+  text-decoration:none;
+  padding-right:6px;
+  border-right:1px solid rgba(107,62,38,0.10);
+  margin-right:8px;
+}
+
+.nav-link{
+  color:var(--muted);
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:6px;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.nav-link:hover{
+  color:var(--primary);
+  background:rgba(107,62,38,0.04);
+}
+
+.nav-right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.icon-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid rgba(107,62,38,0.10);
+  cursor:pointer;
+  text-decoration:none;
+  color:var(--primary);
+  transition:0.25s ease;
+}
+
+.icon-btn svg{
+  display:block;
+}
+
+.icon-btn:hover{
+  background:rgba(212,160,23,0.15);
+  transform:scale(1.08);
+}
+
+/* Mobile tweaks */
+@media (max-width:520px){
+  .nav-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+}

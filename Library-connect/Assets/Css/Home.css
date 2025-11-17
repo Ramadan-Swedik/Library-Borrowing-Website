@@ -1,0 +1,155 @@
+/* home.css */
+:root{
+  --primary:#6b3e26;
+  --accent:#d4a017;
+  --muted:#6e5950;
+  --card-bg:#fff;
+  --page-bg:#fbf8f6;
+}
+
+body{
+  font-family:'Merriweather', serif;
+  background:var(--page-bg);
+  color:#2f2a27;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+
+.site-container{
+  max-width:1100px;
+  margin:18px auto;
+  padding:0 12px;
+}
+
+/* Hero section */
+.hero{
+  background: linear-gradient(90deg, rgba(212,160,23,0.06), rgba(107,62,38,0.02));
+  border-radius:10px;
+  padding:28px;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+}
+
+.hero h1{
+  margin:0 0 6px;
+  color:var(--primary);
+  font-size:30px;
+}
+
+.hero .lead{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+}
+
+/* Section header */
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.section-head h2{
+  margin:0;
+  color:var(--primary);
+  font-size:20px;
+}
+
+/* Grid */
+.cards-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  gap:18px;
+}
+
+/* Book card */
+.book-card{
+  background: var(--card-bg);
+  border:1px solid rgba(107,62,38,0.06);
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:320px;
+  box-shadow:0 6px 18px rgba(107,62,38,0.03);
+  transition:0.25s ease;
+}
+
+.book-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(107,62,38,0.15);
+}
+
+.book-card .cover{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  display:block;
+  background:linear-gradient(180deg, #efe7df, #f6f2ee);
+}
+
+.book-card .card-body{
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+
+.book-card .meta{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.book-card h3{
+  margin:0;
+  font-size:16px;
+  color:var(--primary);
+}
+
+.book-card p.desc{
+  margin:0;
+  color:#3b2b22;
+  font-size:14px;
+  flex:1;
+}
+
+.book-card .btn-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-end;
+  margin-top:8px;
+}
+
+/* Buttons */
+.btn{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid rgba(107,62,38,0.12);
+  background:#fff;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.btn:hover{
+  background:rgba(212,160,23,0.20);
+}
+
+.btn.primary{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+}
+
+.btn.primary:hover{
+  background:#855035;
+}
+
+/* Mobile tweaks */
+@media (max-width:520px){
+  .footer-inner { grid-template-columns: 1fr; }
+}
