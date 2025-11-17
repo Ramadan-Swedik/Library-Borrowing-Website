@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog — LibraConnect</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Assets/Css/Includes/Header.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Menu.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Footer.css">
+  <link rel="stylesheet" href="Assets/Css/Catalog.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="menu"></div>
+
+  <main class="site-container">
+    <h1>Book Catalog</h1>
+
+    <input 
+      type="text" 
+      id="catalog-search" 
+      placeholder="Search books..." 
+      class="search-box"
+      aria-label="Search books">
+
+    <div id="catalog-container" class="catalog-grid">
+      <!-- JS will insert cards -->
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- Load includes -->
+  <script src="Assets/Js/Includes/Header.js"></script>
+  <script src="Assets/Js/Includes/Menu.js"></script>
+  <script src="Assets/Js/Includes/Footer.js"></script>
+
+  <!-- Page-specific script -->
+  <script src="Assets/Js/Catalog.js"></script>
+</body>
+</html>
