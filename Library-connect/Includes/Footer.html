@@ -19,25 +19,37 @@
     <div class="footer-col contact">
       <h4>Contact</h4>
       <p>Email: <a href="mailto:library@libraconnect.local">library@libraconnect.local</a></p>
-      <p>Hours: Mon–Fri 9:00–17:00</p>
-    <div class="social">
+      <p>Hours: Mon – Fri 9:00 AM – 11:00 PM</p>
+      
+      <div class="social" style="margin-top: 15px;">
         <a href="#" class="social-btn" aria-label="Facebook">
             <img src="/Library-connect/Assets/Images/Icons/Facebook.png" alt="Facebook" />
         </a>
         <a href="#" class="social-btn" aria-label="Twitter">
-            <img src="/Library-connect/Assets/Images/Icons/X (Twitter).png" alt="X" />
+            <img src="/Library-connect/Assets/Images/Icons/X (Twitter).png" alt="X (Twitter)" />
         </a>
         <a href="#" class="social-btn" aria-label="Instagram">
             <img src="/Library-connect/Assets/Images/Icons/Instagram.png" alt="Instagram" />
         </a>
+      </div>
     </div>
-
 
     <div class="footer-col subscribe">
       <h4>Subscribe</h4>
-      <p>Get library updates and new book highlights.</p>
-      <form id="subscribe-form" class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscribed (demo)');">
-        <input type="email" placeholder="Your email" aria-label="Your email" required>
+      <p>Do you want to get library updates ?</p>
+      <p>Subscribe here !</p>
+      
+      <form id="subscribe-form" class="subscribe-form" onsubmit="
+        event.preventDefault();
+        const email = this.querySelector('input').value;
+        if (email.toLowerCase().endsWith('@limu.edu.ly')) {
+            alert('Success! You are subscribed.');
+            this.reset();
+        } else {
+            alert('Error: Only @limu.edu.ly emails are accepted.');
+        }
+      ">
+        <input type="email" placeholder="student@limu.edu.ly" aria-label="Your email" required>
         <button type="submit" class="btn small">Subscribe</button>
       </form>
     </div>

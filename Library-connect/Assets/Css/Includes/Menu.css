@@ -9,6 +9,7 @@
 .site-nav{
   background:var(--bg);
   border-bottom:1px solid rgba(107,62,38,0.06);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .nav-inner{
@@ -33,6 +34,7 @@
   padding-right:6px;
   border-right:1px solid rgba(107,62,38,0.10);
   margin-right:8px;
+  transition: color 0.4s ease, border-color 0.4s ease;
 }
 
 .nav-link{
@@ -41,7 +43,7 @@
   padding:6px 8px;
   border-radius:6px;
   font-weight:600;
-  transition:0.2s;
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover{
@@ -67,11 +69,7 @@
   cursor:pointer;
   text-decoration:none;
   color:var(--primary);
-  transition:0.25s ease;
-}
-
-.icon-btn svg{
-  display:block;
+  transition: all 0.25s ease;
 }
 
 .icon-btn:hover{
@@ -79,11 +77,52 @@
   transform:scale(1.08);
 }
 
-/* Mobile tweaks */
+/* User Image Styling */
+.nav-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: filter 0.4s ease;
+}
+
 @media (max-width:520px){
   .nav-inner{
     flex-direction:column;
     align-items:flex-start;
     gap:8px;
   }
+}
+
+/* --- DARK MODE --- */
+body.dark .site-nav {
+  background: #3b2b22;
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+
+body.dark .nav-logo {
+  color: #d4a017;
+  border-right-color: rgba(255,255,255,0.15);
+}
+
+body.dark .nav-link {
+  color: #e0dcd8;
+}
+
+body.dark .nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  color: #d4a017;
+}
+
+body.dark .icon-btn {
+  background: #4a3b32;
+  border-color: rgba(255,255,255,0.1);
+}
+
+body.dark .icon-btn:hover {
+  background: #5c4b41;
+}
+
+/* INVERT user logo to White in Dark Mode */
+body.dark .nav-icon-img {
+  filter: invert(1) brightness(2);
 }

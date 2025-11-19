@@ -5,14 +5,17 @@
   --muted:#6e5950;
   --card-bg:#fff;
   --page-bg:#fbf8f6;
+  --text:#2f2a27;
 }
 
 body{
   font-family:'Merriweather', serif;
   background:var(--page-bg);
-  color:#2f2a27;
+  color:var(--text);
   margin:0;
   -webkit-font-smoothing:antialiased;
+  /* Global page transition */
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .site-container{
@@ -29,18 +32,22 @@ body{
   margin-bottom:18px;
   display:flex;
   align-items:center;
+  /* Smooth transition for hero box */
+  transition: background 0.4s ease; 
 }
 
 .hero h1{
   margin:0 0 6px;
   color:var(--primary);
   font-size:30px;
+  transition: color 0.4s ease;
 }
 
 .hero .lead{
   margin:0;
   color:var(--muted);
   font-size:15px;
+  transition: color 0.4s ease;
 }
 
 /* Section header */
@@ -55,6 +62,7 @@ body{
   margin:0;
   color:var(--primary);
   font-size:20px;
+  transition: color 0.4s ease;
 }
 
 /* Grid */
@@ -74,7 +82,7 @@ body{
   flex-direction:column;
   min-height:320px;
   box-shadow:0 6px 18px rgba(107,62,38,0.03);
-  transition:0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .book-card:hover{
@@ -101,12 +109,14 @@ body{
 .book-card .meta{
   font-size:13px;
   color:var(--muted);
+  transition: color 0.4s ease;
 }
 
 .book-card h3{
   margin:0;
   font-size:16px;
   color:var(--primary);
+  transition: color 0.4s ease;
 }
 
 .book-card p.desc{
@@ -114,6 +124,7 @@ body{
   color:#3b2b22;
   font-size:14px;
   flex:1;
+  transition: color 0.4s ease;
 }
 
 .book-card .btn-row{
@@ -133,6 +144,8 @@ body{
   cursor:pointer;
   font-weight:600;
   transition:0.2s;
+  text-decoration:none;
+  color: #2f2a27;
 }
 
 .btn:hover{
@@ -149,7 +162,64 @@ body{
   background:#855035;
 }
 
-/* Mobile tweaks */
-@media (max-width:520px){
-  .footer-inner { grid-template-columns: 1fr; }
+/* --- DARK MODE --- */
+body.dark{
+  --page-bg:#2f2a27; 
+  --card-bg:#3b2b22; /* Matches Header/Menu/Footer */
+  --text:#f5f2ef;
+}
+
+/* Hero Section in Dark Mode */
+body.dark .hero{
+  background: #3b2b22; /* Solid background to make text readable */
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.dark .hero h1 {
+  color: #d4a017; /* Gold title */
+}
+
+body.dark .hero .lead {
+  color: #e0dcd8; /* Light text */
+}
+
+/* Section Heads */
+body.dark .section-head h2 {
+  color: #d4a017;
+}
+
+/* Cards */
+body.dark .book-card{
+  background: #3b2b22;
+  border-color:rgba(255,255,255,0.1);
+  box-shadow:0 6px 18px rgba(0,0,0,0.3);
+}
+
+body.dark .book-card h3{
+  color:#fff;
+}
+
+body.dark .book-card p.desc,
+body.dark .book-card .meta{
+  color:#e0dcd8;
+}
+
+body.dark .btn{
+  background:#4a3b32;
+  color:#fff;
+  border-color: rgba(255,255,255,0.1);
+}
+
+body.dark .btn:hover{
+  background:#5c4b41;
+}
+
+body.dark .btn.primary{
+  background:#d4a017;
+  border-color:#d4a017;
+  color:#2f2a27;
+}
+
+body.dark .btn.primary:hover {
+  background: #bfa900;
 }

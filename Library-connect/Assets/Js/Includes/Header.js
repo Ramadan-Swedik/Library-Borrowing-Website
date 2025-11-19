@@ -3,14 +3,25 @@ fetch("includes/header.html")
   .then(r => r.ok ? r.text() : Promise.reject("Header not found"))
   .then(html => {
     document.getElementById("header").innerHTML = html;
-    // hook: make header search focus transfer to catalog page search if needed
-    const hs = document.getElementById("global-search");
-    if (hs) {
-      hs.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          // simple behavior: go to catalog and add query param (optional)
-          const q = hs.value.trim();
-          if (q) location.href = `catalog.html?search=${encodeURIComponent(q)}`;
+
+    // Theme toggle logic
+    const toggle = document.getElementById("theme-toggle");
+    const icon = document.getElementById("theme-icon");
+    
+    if (toggle && icon) {
+      // Check if dark mode was already saved or active
+      if (document.body.classList.contains("dark")) {
+         icon.src = "assets/images/Sun.png";
+      }
+
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        
+        // Swap the image source based on mode
+        if (document.body.classList.contains("dark")) {
+            icon.src = "/Library-connect/Assets/Images/Icons/Sun.png";
+        } else {
+            icon.src = "/Library-connect/Assets/Images/Icons/Moon.png";
         }
       });
     }

@@ -1,4 +1,3 @@
-// home.js - renders featured books with images and Read More toggles
 document.addEventListener("DOMContentLoaded", () => {
   const featured = [
     {
@@ -7,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       author: "Laura Weymouth",
       short: "Two sisters return from a magical world — a story about surviving trauma and finding home.",
       long: "Two sisters return from a magical world — a story about surviving trauma and finding home. They soon realize that the world they left behind has changed and must relearn who they are. This novel delicately explores grief, memory, and the quiet ways people repair themselves.",
-      image: "assets/images/book1.jpg",
+      image: "/Library-connect/Assets/Images/Others/The_Light_Between_The_Worlds.jpeg",
       alt: "Cover of The Light Between Worlds"
     },
     {
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       author: "Yuval Noah Harari",
       short: "A concise history that spans biology, anthropology, and the evolution of human societies.",
       long: "A concise history that spans biology, anthropology, and the evolution of human societies. Harari traces the cognitive revolutions that allowed Homo sapiens to dominate the world and examines the future of humanity in the face of biotechnology and artificial intelligence.",
-      image: "assets/images/book2.jpg",
+      image: "/Library-connect/Assets/Images/Others/A_Brief_History_of_Humankind.jpeg",
       alt: "Cover of Sapiens"
     },
     {
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       author: "James Clear",
       short: "Practical strategies to build good habits and break bad ones with tiny changes that compound.",
       long: "Practical strategies to build good habits and break bad ones with tiny changes that compound. James Clear uses science-backed tips and clear examples to show how small daily changes can lead to remarkable results over time.",
-      image: "assets/images/book3.jpg",
+      image: "/Library-connect/Assets/Images/Others/Atomic_Habits.jpeg",
       alt: "Cover of Atomic Habits"
     },
     {
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       author: "Paulo Coelho",
       short: "A shepherd's journey in search of treasure becomes a spiritual quest about following your dreams.",
       long: "A shepherd's journey in search of treasure becomes a spiritual quest about following your dreams. Filled with simple wisdom and memorable lines, The Alchemist is an allegory of hope, destiny, and listening to your heart.",
-      image: "assets/images/book4.jpg",
+      image: "/Library-connect/Assets/Images/Others/The_Alchemist.jpeg",
       alt: "Cover of The Alchemist"
     }
   ];
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     card.className = "book-card";
     card.dataset.bookId = book.id;
 
-    // image element with fallback
     const imgSrc = book.image || "assets/images/placeholder.jpg";
     const img = `<img src="${imgSrc}" alt="${escapeHtml(book.alt || book.title)}" class="cover" onerror="this.onerror=null;this.src='assets/images/placeholder.jpg'">`;
 
@@ -68,11 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(card);
   });
 
-  // delegate read more clicks
+  // Delegate read more clicks — only affects the clicked card
   container.addEventListener("click", (e) => {
     const btn = e.target.closest(".toggle-btn");
     if (!btn) return;
     const card = btn.closest(".book-card");
+    if (!card) return;
     const descEl = card.querySelector(".desc");
     const fullText = unescapeHtml(descEl.dataset.full) || "";
     const isExpanded = btn.getAttribute("aria-expanded") === "true";
