@@ -25,51 +25,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function msg(t) {
     message.textContent = t;
     message.style.display = "block";
-    setTimeout(() => message.style.display = "none", 2000);
+    setTimeout(() => {
+      message.style.display = "none";
+    }, 2000);
   }
 
-  function renderSchedule() {
-    scheduleList.innerHTML = "";
-
-    if (scheduledBooks.length === 0) {
-      scheduleList.innerHTML = `<p style="font-size:13px;color:#6e5950;">No books scheduled.</p>`;
-      return;
+  function loadSchedule() {
+    try {
+      const raw = localStorage.getItem("scheduledBooks");
+      scheduledBooks = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(scheduledBooks)) scheduledBooks = [];
+    } catch {
+      scheduledBooks = [];
     }
+  }
 
-    scheduledBooks.forEach((b, i) => {
-      if (b.hiddenSchedule) return;
-
-      const item = document.createElement("div");
-      item.className = "schedule-item";
-      item.dataset.index = i;
-
-      const img = b.imageData || "Assets/Images/book-placeholder.jpg";
-
-      item.innerHTML = `
-        <img src="${img}" class="schedule-thumb">
-
-        <div class="schedule-main">
-          <h3>${b.title}</h3>
-          <p class="meta">${b.author || ""} • ${b.genre || ""}</p>
-          <p class="desc">${b.description || ""}</p>
-          <p class="date">${b.date || ""}</p>
-        </div>
-
-        <div class="schedule-actions">
-          <button class="btn-xs btn-publish">Publish</button>
-          <button class="btn-xs btn-edit">Edit</button>
-          <button class="btn-xs btn-hide">Hide</button>
-          <button class="btn-xs btn-delete">Delete</button>
-        </div>
-      `;
-
-      scheduleList.appendChild(item);
-    });
+  function saveSchedule() {
+    localStorage.setItem("scheduledBooks", JSON.stringify(scheduledBooks));
   }
 
   function addToLocalStorage(book) {
-    let arr = JSON.parse(localStorage.getItem("publishedBooks") || "[]");
-    arr.push(book); // duplicates allowed
+    let arr;
+    try {
+      const raw = localStorage.getItem("publishedBooks");
+      arr = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(arr)) arr = [];
+    } catch {
+      arr = [];
+    }
+
+    arr.push(book);
     localStorage.setItem("publishedBooks", JSON.stringify(arr));
   }
 
@@ -82,6 +67,59 @@ document.addEventListener("DOMContentLoaded", () => {
       preview.style.display = "block";
     };
     reader.readAsDataURL(file);
+  }
+
+  function clearForm(reset = true) {
+    titleInput.value = "";
+    authorInput.value = "";
+    genreInput.value = "";
+    dateInput.value = "";
+    descInput.value = "";
+    currentImage = "";
+    preview.style.display = "none";
+    fileInput.value = "";
+
+    if (reset) {
+      editingIndex = null;
+      addBtn.textContent = "Add to Schedule";
+    }
+  }
+
+  function renderSchedule() {
+    scheduleList.innerHTML = "";
+
+    if (!scheduledBooks.length) {
+      scheduleList.innerHTML = `<p style="font-size:13px;color:#6e5950;">No books scheduled.</p>`;
+      return;
+    }
+
+    scheduledBooks.forEach((b, i) => {
+      const item = document.createElement("div");
+      item.className = "schedule-item";
+      item.dataset.index = i;
+
+      const imgSrc = b.imageData || "Assets/Images/book-placeholder.jpg";
+
+      item.innerHTML = `
+        <img src="${imgSrc}" class="schedule-thumb">
+
+        <div class="schedule-main">
+          <h3>${b.title}</h3>
+          <p class="meta">${b.author} • ${b.genre}</p>
+          <p class="desc">${b.description}</p>
+          <p class="date">${b.date}</p>
+        </div>
+
+        <div class="schedule-actions">
+          <button class="btn-xs btn-publish">Publish</button>
+          <button class="btn-xs btn-edit">Edit</button>
+          <button class="btn-xs btn-hide">Hide</button>
+          <button class="btn-xs btn-delete">Delete</button>
+        </div>
+      `;
+
+      scheduleList.appendChild(item);
+    });
   }
 
   dropArea.addEventListener("click", () => fileInput.click());
@@ -98,48 +136,33 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", e => {
     e.preventDefault();
 
-    if (!titleInput.value.trim()) return msg("Title is required.");
+    const title = titleInput.value.trim();
+    if (!title) return msg("Title is required.");
 
     const book = {
-      title: titleInput.value.trim(),
+      title,
       author: authorInput.value.trim(),
       genre: genreInput.value.trim(),
       date: dateInput.value,
       description: descInput.value.trim(),
-      imageData: currentImage,
-      hidden: false // default visible in catalog
+      imageData: currentImage
     };
 
     if (editingIndex === null) {
       scheduledBooks.push(book);
-      msg("Added to schedule.");
     } else {
       scheduledBooks[editingIndex] = book;
       editingIndex = null;
       addBtn.textContent = "Add to Schedule";
-      msg("Book updated.");
     }
 
+    saveSchedule();
     clearForm(false);
+    msg("Book saved to schedule.");
     renderSchedule();
   });
 
-  function clearForm(reset = true) {
-    titleInput.value = "";
-    authorInput.value = "";
-    genreInput.value = "";
-    dateInput.value = "";
-    descInput.value = "";
-    currentImage = "";
-    preview.style.display = "none";
-    fileInput.value = "";
-    if (reset) {
-      editingIndex = null;
-      addBtn.textContent = "Add to Schedule";
-    }
-  }
-
-  clearBtn.addEventListener("click", () => clearForm());
+  clearBtn.addEventListener("click", () => clearForm(true));
 
   scheduleList.addEventListener("click", e => {
     const btn = e.target;
@@ -149,15 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const index = Number(item.dataset.index);
     const book = scheduledBooks[index];
 
-    // PUBLISH
     if (btn.classList.contains("btn-publish")) {
       const publishBook = { ...book, hidden: false };
       addToLocalStorage(publishBook);
       msg("Published to catalog.");
-      renderSchedule();
     }
 
-    // EDIT
     else if (btn.classList.contains("btn-edit")) {
       editingIndex = index;
       titleInput.value = book.title;
@@ -165,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       genreInput.value = book.genre;
       dateInput.value = book.date;
       descInput.value = book.description;
+      currentImage = book.imageData;
 
-      currentImage = book.imageData || "";
       if (currentImage) {
         preview.src = currentImage;
         preview.style.display = "block";
@@ -176,35 +196,26 @@ document.addEventListener("DOMContentLoaded", () => {
       form.scrollIntoView({ behavior: "smooth" });
     }
 
-    // DELETE
     else if (btn.classList.contains("btn-delete")) {
       scheduledBooks.splice(index, 1);
-      msg("Deleted.");
+      saveSchedule();
       renderSchedule();
+      msg("Deleted from schedule.");
     }
 
-    // HIDE (hide from catalog)
     else if (btn.classList.contains("btn-hide")) {
       let published = JSON.parse(localStorage.getItem("publishedBooks") || "[]");
 
       published = published.map(p => {
-        if (p.title === book.title) p.hidden = true;
+        if (p.title === book.title) return { ...p, hidden: true };
         return p;
       });
 
       localStorage.setItem("publishedBooks", JSON.stringify(published));
-
       msg("Hidden from catalog.");
     }
   });
 
-  // DELETE ALL PUBLISHED
-  document.getElementById("delete-all-published").addEventListener("click", () => {
-    if (confirm("Delete ALL published books?")) {
-      localStorage.removeItem("publishedBooks");
-      msg("All published books deleted.");
-    }
-  });
-
+  loadSchedule();
   renderSchedule();
 });
