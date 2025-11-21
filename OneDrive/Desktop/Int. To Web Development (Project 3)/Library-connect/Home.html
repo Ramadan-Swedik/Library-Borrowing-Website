@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LibraConnect — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="assets/css/Includes/header.css" />
+  <link rel="stylesheet" href="assets/css/Includes/menu.css" />
+  <link rel="stylesheet" href="assets/css/Includes/footer.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
+</head>
+<body>
+  <!-- Shared includes -->
+  <div id="header"></div>
+  <div id="menu"></div>
+
+  <main class="site-container">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Welcome to LibraConnect</h1>
+        <p class="lead">A warm place to discover books, borrow with ease, and track your reading.</p>
+      </div>
+    </section>
+
+    <section id="featured" class="featured-section">
+      <div class="section-head">
+        <h2>Featured Books</h2>
+      </div>
+      <div id="featured-container" class="cards-grid" aria-live="polite">
+        <!-- JS injects featured book cards here -->
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- Shared component loaders -->
+  <script src="assets/js/Includes/header.js"></script>
+  <script src="assets/js/Includes/menu.js"></script>
+  <script src="assets/js/Includes/footer.js"></script>
+
+  <!-- Page-specific JS -->
+  <script src="assets/js/home.js"></script>
+</body>
+</html>
