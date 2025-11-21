@@ -1,0 +1,113 @@
+:root {
+  --primary:#6b3e26;
+  --muted:#6e5950;
+  --card-bg:white;
+}
+
+.site-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+h1 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* New: Search + Borrow layout */
+.catalog-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgba(107,62,38,0.2);
+  border-radius: 8px;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Catalog grid */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* Catalog card */
+.catalog-card, .book-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(107,62,38,0.1);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  box-shadow: 0 6px 18px rgba(107,62,38,0.05);
+  transition: .2s;
+}
+
+.catalog-card:hover,
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(107,62,38,0.15);
+}
+
+/* Image */
+.cover {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.book-card h3 {
+  margin: 4px 0;
+  color: var(--primary);
+}
+
+/* Meta */
+.meta {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Description — FIXED stretch bug */
+.desc {
+  font-size: 14px;
+  margin-top: 4px;
+
+  /* 🚀 Prevent long words from stretching cards */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Checkbox overlay */
+.card-checkbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.card-image-wrap {
+  position: relative;
+}

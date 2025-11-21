@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog — LibraConnect</title>
+
+  <link rel="stylesheet" href="Assets/Css/Includes/Header.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Menu.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Footer.css">
+  <link rel="stylesheet" href="Assets/Css/Catalog.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="menu"></div>
+
+  <main class="site-container">
+    <h1>Book Catalog</h1>
+
+    <div class="catalog-top">
+      <input 
+        type="text" 
+        id="catalog-search" 
+        placeholder="Search books..." 
+        class="search-box"
+        aria-label="Search books">
+
+      <button id="borrow-top-btn" class="btn primary">
+        Borrow
+      </button>
+    </div>
+
+    <div id="catalog-container" class="catalog-grid"></div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="Assets/Js/Includes/Header.js"></script>
+  <script src="Assets/Js/Includes/Menu.js"></script>
+  <script src="Assets/Js/Includes/Footer.js"></script>
+
+  <script src="Assets/Js/Catalog.js"></script>
+</body>
+</html>

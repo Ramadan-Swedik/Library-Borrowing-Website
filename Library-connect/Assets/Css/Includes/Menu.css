@@ -1,0 +1,128 @@
+/* menu.css */
+:root{
+  --primary:#6b3e26;
+  --accent:#d4a017;
+  --muted:#6e5950;
+  --bg:#fffaf6;
+}
+
+.site-nav{
+  background:var(--bg);
+  border-bottom:1px solid rgba(107,62,38,0.06);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+}
+
+.nav-left{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.nav-logo{
+  color:var(--primary);
+  font-family:'Merriweather', serif;
+  font-weight:700;
+  text-decoration:none;
+  padding-right:6px;
+  border-right:1px solid rgba(107,62,38,0.10);
+  margin-right:8px;
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-link{
+  color:var(--muted);
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:6px;
+  font-weight:600;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover{
+  color:var(--primary);
+  background:rgba(107,62,38,0.04);
+}
+
+.nav-right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.icon-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid rgba(107,62,38,0.10);
+  cursor:pointer;
+  text-decoration:none;
+  color:var(--primary);
+  transition: all 0.25s ease;
+}
+
+.icon-btn:hover{
+  background:rgba(212,160,23,0.15);
+  transform:scale(1.08);
+}
+
+/* User Image Styling */
+.nav-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: filter 0.4s ease;
+}
+
+@media (max-width:520px){
+  .nav-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+}
+
+/* --- DARK MODE --- */
+body.dark .site-nav {
+  background: #3b2b22;
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+
+body.dark .nav-logo {
+  color: #d4a017;
+  border-right-color: rgba(255,255,255,0.15);
+}
+
+body.dark .nav-link {
+  color: #e0dcd8;
+}
+
+body.dark .nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  color: #d4a017;
+}
+
+body.dark .icon-btn {
+  background: #4a3b32;
+  border-color: rgba(255,255,255,0.1);
+}
+
+body.dark .icon-btn:hover {
+  background: #5c4b41;
+}
+
+/* INVERT user logo to White in Dark Mode */
+body.dark .nav-icon-img {
+  filter: invert(1) brightness(2);
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Book — LibraConnect</title>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="Assets/Css/Includes/Header.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Menu.css">
+  <link rel="stylesheet" href="Assets/Css/Includes/Footer.css">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="Assets/Css/Register.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div id="menu"></div>
+
+  <main class="site-container">
+
+    <!-- Scheduled books -->
+    <section class="schedule-section">
+      <h1>Scheduled Books</h1>
+      <p class="hint">Books here are not yet published to the catalog.</p>
+      <div id="schedule-list" class="schedule-list"></div>
+    </section>
+
+    <!-- Add / Edit form -->
+    <section class="form-section">
+      <h2>Add / Edit Book</h2>
+
+      <form id="book-form">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="book-title">Title</label>
+            <input type="text" id="book-title" placeholder="Book title" required>
+          </div>
+
+          <div class="form-group">
+            <label for="book-author">Author</label>
+            <input type="text" id="book-author" placeholder="Author name">
+          </div>
+
+          <div class="form-group">
+            <label for="book-genre">Genre</label>
+            <input type="text" id="book-genre" placeholder="e.g. Fantasy">
+          </div>
+
+          <div class="form-group">
+            <label for="book-date">Date</label>
+            <input type="date" id="book-date">
+          </div>
+
+          <div class="form-group full">
+            <label for="book-description">Description</label>
+            <textarea id="book-description" placeholder="Short description"></textarea>
+          </div>
+
+          <div class="form-group full">
+            <label>Cover Image</label>
+            <div id="drop-area" class="drop-area">
+              <p>Drag & drop an image <br> or <span class="link-like">click to upload</span></p>
+              <input type="file" id="file-input" accept="image/*">
+            </div>
+            <img id="preview" class="preview" style="display:none;">
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="add-update-btn" class="btn primary">Add to Schedule</button>
+          <button type="button" id="clear-btn" class="btn secondary">Clear</button>
+        </div>
+      </form>
+
+      <div id="message" class="message" style="display:none;"></div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- Shared includes -->
+  <script src="Assets/Js/Includes/Header.js"></script>
+  <script src="Assets/Js/Includes/Menu.js"></script>
+  <script src="Assets/Js/Includes/Footer.js"></script>
+
+  <!-- Page JS -->
+  <script src="assets/js/Register.js"></script>
+</body>
+</html>
