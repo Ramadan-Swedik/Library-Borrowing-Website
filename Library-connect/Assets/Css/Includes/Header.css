@@ -124,6 +124,12 @@ body.dark .theme-btn {
   border-color: rgba(255,255,255,0.15);
 }
 
+/* dark mode hover */
+body.dark .theme-btn:hover {
+  background: rgba(212,160,23,0.25); /* same effect as light mode */
+}
+
+
 /* FIX: Targets the ID specifically to force the Sun to turn white */
 body.dark #theme-icon {
   filter: invert(1) brightness(2);
