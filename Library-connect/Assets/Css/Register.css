@@ -73,11 +73,18 @@
   color:var(--muted);
 }
 
-.schedule-main .desc{
-  font-size:13px;
-  color:#3b2b22;
-  margin:4px 0;
+.schedule-main .desc {
+  font-size: 13px;
+  color: #3b2b22;
+  margin: 4px 0;
+
+  /* FIX: prevent long text from stretching the page */
+  max-width: 600px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
+
 
 .schedule-main .date{
   font-size:12px;
